@@ -1,0 +1,2054 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الهوية البصرية الجديدة - قياس أون لاين | Qeyas Online Brand Identity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --qeyas-green: #91C03E;
+            --qeyas-blue: #0F85B7;
+            --light-green: #A4D65E;
+            --text-black: #1A1A1A;
+            --white: #FFFFFF;
+            --light-gray: #E3EBE0;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-radius: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-black);
+            background-color: var(--white);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .section.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section:nth-child(even) {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--qeyas-green) 0%, var(--qeyas-blue) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="25" cy="75" r="1.5" fill="%23ffffff" opacity="0.05"/><circle cx="75" cy="25" r="1.5" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(10px) rotate(-1deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--white), var(--light-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 2rem;
+            color: var(--white);
+            opacity: 0.7;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            transform: translateY(0);
+            border: 1px solid rgba(145, 192, 62, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--qeyas-green);
+        }
+
+        .card-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--qeyas-green);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-black);
+        }
+
+        .card-desc {
+            color: rgba(26, 26, 26, 0.7);
+            font-size: 0.95rem;
+        }
+
+        /* Color Palette */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .color-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .color-card:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .color-swatch {
+            height: 120px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .color-info {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .color-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .color-hex {
+            font-family: monospace;
+            color: rgba(26, 26, 26, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .color-usage {
+            font-size: 0.8rem;
+            color: rgba(26, 26, 26, 0.5);
+            margin-top: 0.5rem;
+        }
+
+        /* Typography */
+        .typography-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .font-sample {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .font-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--qeyas-blue);
+        }
+
+        .font-demo {
+            margin: 1rem 0;
+        }
+
+        .font-demo.cairo {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .font-demo.montserrat {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .font-demo.large { font-size: 2rem; font-weight: 700; }
+        .font-demo.medium { font-size: 1.5rem; font-weight: 600; }
+        .font-demo.regular { font-size: 1.2rem; font-weight: 400; }
+        .font-demo.small { font-size: 1rem; font-weight: 300; }
+
+        /* Templates */
+        .templates-scroll {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        .template-card {
+            flex-shrink: 0;
+            width: 280px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .template-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .template-count {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--qeyas-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .template-category {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .template-items {
+            list-style: none;
+        }
+
+        .template-items li {
+            padding: 0.25rem 0;
+            font-size: 0.9rem;
+            color: rgba(26, 26, 26, 0.7);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin: 3rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--qeyas-green), var(--qeyas-blue));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin: 2rem 0;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+            margin-left: 2rem;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+            margin-right: 2rem;
+            text-align: left;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--qeyas-green);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            box-shadow: 0 0 0 4px var(--white);
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            width: calc(50% - 2rem);
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .timeline-week {
+            color: var(--qeyas-blue);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-tasks {
+            list-style: none;
+        }
+
+        .timeline-tasks li {
+            padding: 0.25rem 0;
+            font-size: 0.9rem;
+            color: rgba(26, 26, 26, 0.7);
+        }
+
+        .timeline-tasks li::before {
+            content: '✓';
+            color: var(--qeyas-green);
+            margin-left: 0.5rem;
+        }
+
+        /* Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, var(--qeyas-green), var(--qeyas-blue));
+            color: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .metric-value {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            counter-reset: metric;
+        }
+
+        .metric-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-desc {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        /* KPIs */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .kpi-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .kpi-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .progress-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: conic-gradient(var(--qeyas-green) 0deg, var(--light-gray) 0deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            position: relative;
+        }
+
+        .progress-circle::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border-radius: 50%;
+        }
+
+        .progress-value {
+            position: relative;
+            z-index: 1;
+            font-weight: 700;
+            color: var(--qeyas-green);
+        }
+
+        .kpi-target {
+            color: rgba(26, 26, 26, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Next Steps */
+        .checklist {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            margin: 1rem 0;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .checklist li:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .checklist li::before {
+            content: '☐';
+            font-size: 1.5rem;
+            color: var(--qeyas-green);
+            margin-left: 1rem;
+        }
+
+        .checklist li.checked::before {
+            content: '☑';
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--qeyas-green), var(--qeyas-blue));
+            color: var(--white);
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            margin-top: 2rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--qeyas-green), var(--qeyas-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: rgba(26, 26, 26, 0.6);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--light-gray);
+            color: var(--text-black);
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 3px solid var(--qeyas-green);
+        }
+
+        .footer-content {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid rgba(145, 192, 62, 0.2);
+        }
+
+        .footer-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--qeyas-green);
+        }
+
+        .footer-info {
+            margin: 0.5rem 0;
+            color: var(--text-black);
+        }
+
+        .footer-contact {
+            color: var(--qeyas-blue);
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .typography-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .templates-scroll {
+                padding: 1rem;
+                margin: 0 -20px;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                padding-right: 0;
+            }
+            
+            .timeline-item .timeline-content {
+                width: calc(100% - 60px);
+                margin-right: 0 !important;
+                margin-left: 60px !important;
+                text-align: right !important;
+            }
+            
+            .timeline-marker {
+                left: 20px;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Brand Voice Section */
+        .brand-voice-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .voice-section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--qeyas-blue);
+        }
+
+        .characteristics-list, .examples-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .characteristic-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: fadeInLeft 0.6s ease-out forwards;
+        }
+
+        .characteristic-item:nth-child(1) { animation-delay: 0.1s; }
+        .characteristic-item:nth-child(2) { animation-delay: 0.2s; }
+        .characteristic-item:nth-child(3) { animation-delay: 0.3s; }
+        .characteristic-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .characteristic-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .characteristic-icon {
+            font-size: 2rem;
+            margin-left: 1rem;
+        }
+
+        .characteristic-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-black);
+        }
+
+        .characteristic-content p {
+            color: rgba(26, 26, 26, 0.6);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .message-card {
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            opacity: 0;
+            transform: translateX(20px);
+            animation: fadeInRight 0.6s ease-out forwards;
+        }
+
+        .message-card:nth-child(1) { animation-delay: 0.1s; }
+        .message-card:nth-child(2) { animation-delay: 0.2s; }
+        .message-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .message-card.motivating {
+            background: linear-gradient(135deg, rgba(145, 192, 62, 0.1), rgba(145, 192, 62, 0.05));
+            border-left: 4px solid var(--qeyas-green);
+        }
+
+        .message-card.supportive {
+            background: linear-gradient(135deg, rgba(15, 133, 183, 0.1), rgba(15, 133, 183, 0.05));
+            border-left: 4px solid var(--qeyas-blue);
+        }
+
+        .message-card.analytical {
+            background: linear-gradient(135deg, rgba(15, 133, 183, 0.1), rgba(15, 133, 183, 0.05));
+            border-left: 4px solid var(--qeyas-blue);
+        }
+
+        .message-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .speech-bubble {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .message-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .message-type {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: rgba(145, 192, 62, 0.2);
+            color: var(--qeyas-green);
+        }
+
+        /* Typography Psychology Section */
+        .psychology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .psychology-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            transform: translateY(0);
+        }
+
+        .psychology-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .psychology-card[data-card="noto"]:hover {
+            border-top: 3px solid var(--qeyas-blue);
+        }
+
+        .psychology-card[data-card="cairo"]:hover {
+            border-top: 3px solid var(--qeyas-green);
+        }
+
+        .psychology-card[data-card="colors"]:hover {
+            border-top: 3px solid var(--light-green);
+        }
+
+        .psychology-card[data-card="combined"]:hover {
+            border-top: 3px solid var(--qeyas-green);
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--qeyas-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-header p {
+            color: rgba(26, 26, 26, 0.6);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .font-sample-large {
+            font-size: 2.2rem;
+            text-align: center;
+            margin: 1rem 0;
+            color: var(--text-black);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            background: linear-gradient(135deg, var(--light-gray), var(--white));
+        }
+
+        .psychological-effects {
+            margin: 1.5rem 0;
+        }
+
+        .effect-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            background: rgba(245, 245, 245, 0.5);
+            transition: var(--transition);
+        }
+
+        .effect-item:hover {
+            background: rgba(145, 192, 62, 0.1);
+            transform: translateX(5px);
+        }
+
+        .effect-icon {
+            font-size: 1.5rem;
+            margin-left: 1rem;
+            min-width: 40px;
+        }
+
+        .effect-content {
+            flex: 1;
+        }
+
+        .effect-content strong {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .effect-content small {
+            color: rgba(26, 26, 26, 0.6);
+            font-size: 0.8rem;
+        }
+
+        .card-result {
+            text-align: center;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--qeyas-green), var(--qeyas-blue));
+            color: var(--white);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .card-result.highlighted {
+            background: linear-gradient(135deg, var(--qeyas-green), var(--light-green));
+            font-size: 1.1rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Color Psychology Specific */
+        .color-psychology-content {
+            margin: 1rem 0;
+        }
+
+        .color-effect-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            background: rgba(245, 245, 245, 0.3);
+        }
+
+        .color-swatch-small {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-left: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            flex-shrink: 0;
+        }
+
+        .color-effects {
+            flex: 1;
+        }
+
+        .color-effects .effect-item {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Combined Effect */
+        .combination-visual {
+            margin: 1.5rem 0;
+        }
+
+        .combination-formula {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto 1fr;
+            gap: 1rem;
+            align-items: center;
+            text-align: center;
+        }
+
+        .formula-part, .formula-result {
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            background: rgba(245, 245, 245, 0.5);
+        }
+
+        .formula-result {
+            background: linear-gradient(135deg, rgba(145, 192, 62, 0.2), rgba(15, 133, 183, 0.2));
+        }
+
+        .part-label, .result-label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .plus-sign, .equals-sign {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--qeyas-blue);
+        }
+
+        /* Animations */
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes tooltipFadeIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        @keyframes tooltipFadeOut {
+            from {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+        }
+
+        /* Psychology Card Active State */
+        .psychology-card.active {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(145, 192, 62, 0.3);
+            border-top: 3px solid var(--qeyas-green);
+        }
+
+        /* Initialize psychology cards as hidden for scroll animation */
+        .psychology-card {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .psychology-card.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive for new sections */
+        @media (max-width: 768px) {
+            .brand-voice-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .psychology-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .combination-formula {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .plus-sign, .equals-sign {
+                font-size: 1.2rem;
+                margin: 0.5rem 0;
+            }
+            
+            .font-sample-large {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
+        .mt-2 { margin-top: 1rem; }
+        .mt-3 { margin-top: 1.5rem; }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="section hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>الهوية البصرية الجديدة</h1>
+                <h2>قياس أون لاين - QEYAS ONLINE</h2>
+                <p style="font-size: 1.2rem; opacity: 0.8; animation: slideInUp 1s ease-out 0.4s both;">تصميم عصري وهوية متكاملة لمستقبل أفضل</p>
+            </div>
+            <div class="scroll-indicator"></div>
+        </div>
+    </section>
+
+    <!-- Executive Summary -->
+    <section class="section" id="summary">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">ملخص تنفيذي</h2>
+                <p class="section-subtitle">نظرة شاملة على المخرجات والنتائج المتوقعة</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-number">6</div>
+                    <h3 class="card-title">ألوان استراتيجية</h3>
+                    <p class="card-desc">لوحة ألوان متكاملة</p>
+                </div>
+                <div class="card">
+                    <div class="card-number">14+</div>
+                    <h3 class="card-title">قالب تصميم</h3>
+                    <p class="card-desc">لجميع المنصات</p>
+                </div>
+                <div class="card">
+                    <div class="card-number">2</div>
+                    <h3 class="card-title">نظام خطوط متكامل</h3>
+                    <p class="card-desc">عربي وإنجليزي</p>
+                </div>
+                <div class="card">
+                    <div class="card-number">1</div>
+                    <h3 class="card-title">دليل شامل</h3>
+                    <p class="card-desc">إرشادات كاملة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Color Palette -->
+    <section class="section" id="colors">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">لوحة الألوان</h2>
+                <p class="section-subtitle">ألوان استراتيجية مدروسة لتعزيز الهوية البصرية</p>
+            </div>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #91C03E;">
+                        <span style="color: white; font-weight: bold;">#91C03E</span>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">أخضر قياس</div>
+                        <div class="color-hex">Qeyas Green</div>
+                        <div class="color-usage">الأزرار الرئيسية والعناوين</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #0F85B7;">
+                        <span style="color: white; font-weight: bold;">#0F85B7</span>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">أزرق قياس</div>
+                        <div class="color-hex">Qeyas Blue</div>
+                        <div class="color-usage">الروابط والأيقونات</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #A4D65E;">
+                        <span style="color: white; font-weight: bold;">#A4D65E</span>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">أخضر فاتح</div>
+                        <div class="color-hex">Light Green</div>
+                        <div class="color-usage">الإبرازات والتدرجات</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #1A1A1A;">
+                        <span style="color: white; font-weight: bold;">#1A1A1A</span>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">أسود النصوص</div>
+                        <div class="color-hex">Text Black</div>
+                        <div class="color-usage">النصوص الرئيسية</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #FFFFFF; border: 1px solid #ddd;">
+                        <span style="color: #1A1A1A; font-weight: bold;">#FFFFFF</span>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">أبيض</div>
+                        <div class="color-hex">White</div>
+                        <div class="color-usage">الخلفيات</div>
+                    </div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background: #E3EBE0;">
+                        <span style="color: #1A1A1A; font-weight: bold;">#E3EBE0</span>
+                    </div>
+                    <div class="color-info">
+                        <div class="color-name">رمادي فاتح</div>
+                        <div class="color-hex">Light Gray</div>
+                        <div class="color-usage">خلفيات ثانوية</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Typography -->
+    <section class="section" id="typography">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">نظام الخطوط</h2>
+                <p class="section-subtitle">خطوط عصرية تدعم المحتوى العربي والإنجليزي</p>
+            </div>
+            <div class="typography-grid">
+                <div class="font-sample">
+                    <h3 class="font-title">خط القرآن - Cairo</h3>
+                    <div class="font-demo cairo large">نموذج كبير - عناوين رئيسية</div>
+                    <div class="font-demo cairo medium">نموذج متوسط - عناوين فرعية</div>
+                    <div class="font-demo cairo regular">نموذج عادي - النصوص الأساسية</div>
+                    <div class="font-demo cairo small">نموذج صغير - النصوص الثانوية</div>
+                </div>
+                <div class="font-sample">
+                    <h3 class="font-title">Montserrat Font</h3>
+                    <div class="font-demo montserrat large">Large Sample - Main Headers</div>
+                    <div class="font-demo montserrat medium">Medium Sample - Sub Headers</div>
+                    <div class="font-demo montserrat regular">Regular Sample - Body Text</div>
+                    <div class="font-demo montserrat small">Small Sample - Secondary Text</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Voice -->
+    <section class="section" id="brand-voice">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">صوت العلامة التجارية</h2>
+                <p class="section-subtitle">خبير داعم وملهم</p>
+            </div>
+            <div class="brand-voice-grid">
+                <div class="voice-characteristics">
+                    <h3 class="voice-section-title">خصائص الصوت</h3>
+                    <div class="characteristics-list">
+                        <div class="characteristic-item">
+                            <span class="characteristic-icon">🎓</span>
+                            <div class="characteristic-content">
+                                <h4>مهني ومحفز</h4>
+                                <p>Professional &amp; Motivating</p>
+                            </div>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-icon">🤝</span>
+                            <div class="characteristic-content">
+                                <h4>داعم ومطمئن</h4>
+                                <p>Supportive &amp; Reassuring</p>
+                            </div>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-icon">📊</span>
+                            <div class="characteristic-content">
+                                <h4>واضح وتحليلي</h4>
+                                <p>Clear &amp; Analytical</p>
+                            </div>
+                        </div>
+                        <div class="characteristic-item">
+                            <span class="characteristic-icon">✨</span>
+                            <div class="characteristic-content">
+                                <h4>إيجابي ومجتمعي</h4>
+                                <p>Positive &amp; Community-focused</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="voice-examples">
+                    <h3 class="voice-section-title">أمثلة على الرسائل</h3>
+                    <div class="examples-list">
+                        <div class="message-card motivating">
+                            <span class="speech-bubble">💬</span>
+                            <p>"مع قياس أون لاين، أنت دائماً أقرب لتحقيق حلمك الجامعي"</p>
+                            <span class="message-type">محفز</span>
+                        </div>
+                        <div class="message-card supportive">
+                            <span class="speech-bubble">💙</span>
+                            <p>"لا تقلق من الاختبارات، نحن معك خطوة بخطوة"</p>
+                            <span class="message-type">داعم</span>
+                        </div>
+                        <div class="message-card analytical">
+                            <span class="speech-bubble">📈</span>
+                            <p>"استراتيجيات تدريب ذكية، تقارير تفصيلية، نتائج ملموسة"</p>
+                            <span class="message-type">تحليلي</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Typography Psychology -->
+    <section class="section" id="typography-psychology">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">علم النفس التسويقي</h2>
+                <p class="section-subtitle">كيف تؤثر الخطوط والألوان على قرارات جمهورنا</p>
+            </div>
+            <div class="psychology-grid">
+                <div class="psychology-card font-card" data-card="noto">
+                    <div class="card-header">
+                        <h3>Noto Kufi Arabic</h3>
+                        <p>العناوين الرئيسية</p>
+                    </div>
+                    <div class="font-sample-large" style="font-family: 'Cairo', sans-serif; font-weight: 700;">نموذج الخط</div>
+                    <div class="psychological-effects">
+                        <div class="effect-item">
+                            <span class="effect-icon">💪</span>
+                            <div class="effect-content">
+                                <strong>القوة والثقة</strong>
+                                <small>الشكل الهندسي يوحي بالاستقرار</small>
+                            </div>
+                        </div>
+                        <div class="effect-item">
+                            <span class="effect-icon">🎯</span>
+                            <div class="effect-content">
+                                <strong>الوضوح والمباشرة</strong>
+                                <small>يعكس الشفافية والصراحة</small>
+                            </div>
+                        </div>
+                        <div class="effect-item">
+                            <span class="effect-icon">🚀</span>
+                            <div class="effect-content">
+                                <strong>الحداثة والتقنية</strong>
+                                <small>يربط العلامة بالابتكار</small>
+                            </div>
+                        </div>
+                        <div class="effect-item">
+                            <span class="effect-icon">📚</span>
+                            <div class="effect-content">
+                                <strong>السلطة المعرفية</strong>
+                                <small>مرتبط تاريخياً بالعلم</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-result">يمنح العلامة القوة والخبرة</div>
+                </div>
+
+                <div class="psychology-card font-card" data-card="cairo">
+                    <div class="card-header">
+                        <h3>Cairo Font</h3>
+                        <p>النصوص والمحتوى</p>
+                    </div>
+                    <div class="font-sample-large" style="font-family: 'Cairo', sans-serif; font-weight: 400;">نموذج الخط</div>
+                    <div class="psychological-effects">
+                        <div class="effect-item">
+                            <span class="effect-icon">🤝</span>
+                            <div class="effect-content">
+                                <strong>الألفة والود</strong>
+                                <small>الحواف المستديرة تخلق الترحيب</small>
+                            </div>
+                        </div>
+                        <div class="effect-item">
+                            <span class="effect-icon">📖</span>
+                            <div class="effect-content">
+                                <strong>سهولة الاستيعاب</strong>
+                                <small>يزيد الثقة بنسبة 40%</small>
+                            </div>
+                        </div>
+                        <div class="effect-item">
+                            <span class="effect-icon">😌</span>
+                            <div class="effect-content">
+                                <strong>التوازن العاطفي</strong>
+                                <small>مناسب للتواصل الداعم</small>
+                            </div>
+                        </div>
+                        <div class="effect-item">
+                            <span class="effect-icon">💚</span>
+                            <div class="effect-content">
+                                <strong>الوضوح المهدئ</strong>
+                                <small>القراءة السلسة تقلل التوتر</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-result">يضيف الدعم والطمأنينة</div>
+                </div>
+
+                <div class="psychology-card color-card" data-card="colors">
+                    <div class="card-header">
+                        <h3>علم نفس الألوان</h3>
+                        <p>التأثير النفسي للألوان</p>
+                    </div>
+                    <div class="color-psychology-content">
+                        <div class="color-effect-group">
+                            <div class="color-swatch-small" style="background: #91C03E;"></div>
+                            <div class="color-effects">
+                                <div class="effect-item">
+                                    <span class="effect-icon">🌱</span>
+                                    <strong>النمو والأمل</strong>
+                                </div>
+                                <div class="effect-item">
+                                    <span class="effect-icon">✨</span>
+                                    <strong>الطاقة الإيجابية</strong>
+                                </div>
+                                <div class="effect-item">
+                                    <span class="effect-icon">😊</span>
+                                    <strong>تقليل القلق</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="color-effect-group">
+                            <div class="color-swatch-small" style="background: #0F85B7;"></div>
+                            <div class="color-effects">
+                                <div class="effect-item">
+                                    <span class="effect-icon">🛡️</span>
+                                    <strong>الثقة والمصداقية</strong>
+                                </div>
+                                <div class="effect-item">
+                                    <span class="effect-icon">🎓</span>
+                                    <strong>الاحترافية</strong>
+                                </div>
+                                <div class="effect-item">
+                                    <span class="effect-icon">🧘</span>
+                                    <strong>الهدوء العقلي</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-result">توازن مثالي للتأثير</div>
+                </div>
+
+                <div class="psychology-card combined-card" data-card="combined">
+                    <div class="card-header">
+                        <h3>التأثير المركب</h3>
+                        <p>النتيجة النهائية</p>
+                    </div>
+                    <div class="combination-visual">
+                        <div class="combination-formula">
+                            <div class="formula-part">
+                                <span class="part-label">القوة والخبرة</span>
+                                <small>Noto Kufi + الأزرق</small>
+                            </div>
+                            <span class="plus-sign">+</span>
+                            <div class="formula-part">
+                                <span class="part-label">الدعم والطمأنينة</span>
+                                <small>Cairo + الأخضر</small>
+                            </div>
+                            <span class="equals-sign">=</span>
+                            <div class="formula-result">
+                                <span class="result-label">خبير داعم وملهم</span>
+                                <small>هوية متكاملة تلبي احتياجات الجمهور</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-result highlighted">الصوت المثالي لقياس أون لاين</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Templates -->
+    <section class="section" id="templates">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">معرض القوالب</h2>
+                <p class="section-subtitle">مجموعة شاملة من القوالب لجميع المنصات</p>
+            </div>
+            <div class="templates-scroll">
+                <div class="template-card">
+                    <div class="template-count">5</div>
+                    <h3 class="template-category">وسائل التواصل</h3>
+                    <ul class="template-items">
+                        <li>Instagram 1080×1080</li>
+                        <li>Instagram Story 1080×1920</li>
+                        <li>Facebook 1200×630</li>
+                        <li>Twitter 1200×675</li>
+                        <li>LinkedIn 1200×627</li>
+                    </ul>
+                </div>
+                <div class="template-card">
+                    <div class="template-count">3</div>
+                    <h3 class="template-category">الإعلانات الرقمية</h3>
+                    <ul class="template-items">
+                        <li>Banner 728×90</li>
+                        <li>Banner 300×250</li>
+                        <li>Facebook Ad 1200×628</li>
+                    </ul>
+                </div>
+                <div class="template-card">
+                    <div class="template-count">3</div>
+                    <h3 class="template-category">المحتوى التعليمي</h3>
+                    <ul class="template-items">
+                        <li>E-book 1600×2560</li>
+                        <li>Infographic 800×2000</li>
+                        <li>Certificate 1754×1240</li>
+                    </ul>
+                </div>
+                <div class="template-card">
+                    <div class="template-count">3</div>
+                    <h3 class="template-category">المطبوعات</h3>
+                    <ul class="template-items">
+                        <li>Business Card 1050×600</li>
+                        <li>Brochure 2480×3508</li>
+                        <li>Roll-Up Banner 800×2000mm</li>
+                    </ul>
+                </div>
+                <div class="template-card">
+                    <div class="template-count">1</div>
+                    <h3 class="template-category">عناصر الويب</h3>
+                    <ul class="template-items">
+                        <li>Header Banner 1920×400</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="section" id="timeline">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">خطة التنفيذ</h2>
+                <p class="section-subtitle">جدول زمني مفصل للمراحل والمهام</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-week">الأسبوع 1</div>
+                        <h3 class="timeline-title">الإعداد</h3>
+                        <ul class="timeline-tasks">
+                            <li>إنشاء Brand Kit</li>
+                            <li>رفع الشعارات</li>
+                            <li>إضافة الألوان والخطوط</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-week">الأسبوع 2-3</div>
+                        <h3 class="timeline-title">القوالب</h3>
+                        <ul class="timeline-tasks">
+                            <li>تصميم 14 قالب</li>
+                            <li>اختبار المحتوى</li>
+                            <li>التحسين</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-week">الأسبوع 4</div>
+                        <h3 class="timeline-title">العناصر</h3>
+                        <ul class="timeline-tasks">
+                            <li>مكتبة الأيقونات</li>
+                            <li>الأشكال المخصصة</li>
+                            <li>إطارات الصور</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-week">الأسبوع 5</div>
+                        <h3 class="timeline-title">التوثيق</h3>
+                        <ul class="timeline-tasks">
+                            <li>دليل الاستخدام</li>
+                            <li>مواد التدريب</li>
+                            <li>دليل الأسلوب</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-week">الأسبوع 6</div>
+                        <h3 class="timeline-title">الإطلاق</h3>
+                        <ul class="timeline-tasks">
+                            <li>تأهيل الفريق</li>
+                            <li>المشاركة</li>
+                            <li>أول حملة</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Impact -->
+    <section class="section" id="impact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">الأثر التجاري</h2>
+                <p class="section-subtitle">المقاييس والنتائج المتوقعة</p>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value" data-count="50">0%</div>
+                    <div class="metric-title">توفير الوقت</div>
+                    <div class="metric-desc">تقليل وقت إنتاج التصاميم</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" data-count="15000">0</div>
+                    <div class="metric-title">ريال توفير سنوي</div>
+                    <div class="metric-desc">وفورات مالية مباشرة</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" data-count="100">0%</div>
+                    <div class="metric-title">اتساق العلامة</div>
+                    <div class="metric-desc">توحيد الهوية البصرية</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" data-count="3">0x</div>
+                    <div class="metric-title">زيادة التعرف</div>
+                    <div class="metric-desc">زيادة التعرف على العلامة</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Metrics -->
+    <section class="section" id="kpis">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">مؤشرات النجاح</h2>
+                <p class="section-subtitle">مقاييس الأداء الرئيسية المستهدفة</p>
+            </div>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <h3 class="kpi-title">اتساق العلامة التجارية</h3>
+                    <div class="progress-circle" data-progress="95">
+                        <div class="progress-value">95%</div>
+                    </div>
+                    <div class="kpi-target">Target: 95%+</div>
+                </div>
+                <div class="kpi-card">
+                    <h3 class="kpi-title">سرعة التصميم</h3>
+                    <div class="progress-circle" data-progress="90">
+                        <div class="progress-value">90%</div>
+                    </div>
+                    <div class="kpi-target">Target: &lt;٢ ساعات</div>
+                </div>
+                <div class="kpi-card">
+                    <h3 class="kpi-title">الموافقة الأولى</h3>
+                    <div class="progress-circle" data-progress="85">
+                        <div class="progress-value">85%</div>
+                    </div>
+                    <div class="kpi-target">Target: 85%+</div>
+                </div>
+                <div class="kpi-card">
+                    <h3 class="kpi-title">رضا الفريق</h3>
+                    <div class="progress-circle" data-progress="90">
+                        <div class="progress-value">٤.٥/٥</div>
+                    </div>
+                    <div class="kpi-target">Target: ٤.٥/٥</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Steps -->
+    <section class="section" id="next-steps">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">الخطوات التالية</h2>
+                <p class="section-subtitle">ما يتطلب للموافقة والبدء</p>
+            </div>
+            <ul class="checklist">
+                <li>موافقة الإدارة على الاقتراح والميزانية</li>
+                <li>تعيين الفريق وتحديد المسؤوليات</li>
+                <li>البدء الفوري في المرحلة الأولى</li>
+            </ul>
+            <div class="text-center">
+                <a href="#" class="cta-button" onclick="alert('تم إرسال الطلب للموافقة! شكراً لك.')">الموافقة والبدء</a>
+                <p class="mt-2" style="color: rgba(26, 26, 26, 0.6);">المدة المتوقعة: 6 أسابيع</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="section footer" id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3 class="footer-title">محمود العناني - مسؤول التسويق الالكتروني - قياس أون لاين</h3>
+                <div class="footer-info">تاريخ العرض: ديسمبر 2025 م – جمادى الآخرة 1447 هـ</div>
+                <div class="footer-info">الإصدار: 2</div>
+                <div class="footer-info footer-contact mt-2">للاستفسارات: 966564729894</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scroll and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer for scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -10% 0px'
+            });
+
+            // Observe all sections
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Animate counters
+            function animateCounters() {
+                const counters = document.querySelectorAll('[data-count]');
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-count'));
+                    const text = counter.textContent;
+                    const isPercentage = text.includes('%');
+                    const isMultiplier = text.includes('x');
+                    const isRiyal = counter.parentNode.querySelector('.metric-title').textContent.includes('ريال');
+                    
+                    let current = 0;
+                    const increment = target / 50;
+                    
+                    const updateCounter = () => {
+                        if (current < target) {
+                            current += increment;
+                            if (isPercentage) {
+                                counter.textContent = Math.ceil(current) + '%';
+                            } else if (isMultiplier) {
+                                counter.textContent = Math.ceil(current) + 'x';
+                            } else if (isRiyal) {
+                                counter.textContent = Math.ceil(current).toLocaleString();
+                            } else {
+                                counter.textContent = Math.ceil(current);
+                            }
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            if (isPercentage) {
+                                counter.textContent = target + '%';
+                            } else if (isMultiplier) {
+                                counter.textContent = target + 'x';
+                            } else if (isRiyal) {
+                                counter.textContent = target.toLocaleString();
+                            } else {
+                                counter.textContent = target;
+                            }
+                        }
+                    };
+                    
+                    updateCounter();
+                });
+            }
+
+            // Animate progress circles
+            function animateProgressCircles() {
+                const circles = document.querySelectorAll('[data-progress]');
+                circles.forEach(circle => {
+                    const progress = parseInt(circle.getAttribute('data-progress'));
+                    const degree = (progress / 100) * 360;
+                    circle.style.background = `conic-gradient(var(--qeyas-green) ${degree}deg, var(--light-gray) ${degree}deg)`;
+                });
+            }
+
+            // Trigger animations when sections are in view
+            const metricsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.id === 'impact') {
+                            setTimeout(animateCounters, 500);
+                        }
+                        if (entry.target.id === 'kpis') {
+                            setTimeout(animateProgressCircles, 500);
+                        }
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            metricsObserver.observe(document.getElementById('impact'));
+            metricsObserver.observe(document.getElementById('kpis'));
+
+            // Color card interactions
+            const colorCards = document.querySelectorAll('.color-card');
+            colorCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const hex = this.querySelector('.color-swatch span').textContent;
+                    const name = this.querySelector('.color-name').textContent;
+                    
+                    // Create temporary text area to copy to clipboard
+                    const tempTextArea = document.createElement('textarea');
+                    tempTextArea.value = hex;
+                    document.body.appendChild(tempTextArea);
+                    tempTextArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempTextArea);
+                    
+                    // Show feedback
+                    const originalContent = this.querySelector('.color-usage').textContent;
+                    this.querySelector('.color-usage').textContent = 'تم نسخ الرمز!';
+                    this.querySelector('.color-usage').style.color = 'var(--qeyas-green)';
+                    
+                    setTimeout(() => {
+                        this.querySelector('.color-usage').textContent = originalContent;
+                        this.querySelector('.color-usage').style.color = '';
+                    }, 2000);
+                });
+            });
+
+            // Checklist interactions
+            const checklistItems = document.querySelectorAll('.checklist li');
+            checklistItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.classList.toggle('checked');
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Auto-scroll indicator interaction
+            document.querySelector('.scroll-indicator').addEventListener('click', function() {
+                document.getElementById('summary').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+
+            // Add hover effects to template cards
+            const templateCards = document.querySelectorAll('.template-card');
+            templateCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.borderLeft = '4px solid var(--qeyas-green)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.borderLeft = 'none';
+                });
+            });
+
+            // Psychology Cards Interactive Features
+            const psychologyCards = document.querySelectorAll('.psychology-card');
+            psychologyCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const cardType = this.getAttribute('data-card');
+                    
+                    // Remove active state from all cards
+                    psychologyCards.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active state to clicked card
+                    this.classList.add('active');
+                    
+                    // Show detailed information based on card type
+                    showCardDetails(cardType);
+                });
+                
+                card.addEventListener('mouseenter', function() {
+                    // Add subtle animation effects
+                    const effects = this.querySelectorAll('.effect-item');
+                    effects.forEach((effect, index) => {
+                        setTimeout(() => {
+                            effect.style.transform = 'translateX(5px)';
+                            effect.style.background = 'rgba(145, 192, 62, 0.15)';
+                        }, index * 100);
+                    });
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const effects = this.querySelectorAll('.effect-item');
+                    effects.forEach(effect => {
+                        effect.style.transform = '';
+                        effect.style.background = '';
+                    });
+                });
+            });
+
+            // Function to show detailed card information
+            function showCardDetails(cardType) {
+                const messages = {
+                    'noto': 'خط Noto Kufi يعكس القوة والسلطة المعرفية، مما يجعل العلامة التجارية تبدو موثوقة وخبيرة في مجالها.',
+                    'cairo': 'خط Cairo يضفي الألفة والراحة، مما يجعل المستخدمين يشعرون بالأمان والدعم في رحلتهم التعليمية.',
+                    'colors': 'الأخضر يحفز النمو والأمل، بينما الأزرق يعزز الثقة والاحترافية - توازن مثالي للتعلم.',
+                    'combined': 'عندما تتحد هذه العناصر، تخلق صوت "خبير داعم وملهم" الذي يحتاجه طلاب قياس.'
+                };
+                
+                // Create and show a tooltip or modal
+                showTooltip(messages[cardType]);
+            }
+
+            // Tooltip function
+            function showTooltip(message) {
+                // Remove existing tooltip
+                const existingTooltip = document.querySelector('.psychology-tooltip');
+                if (existingTooltip) {
+                    existingTooltip.remove();
+                }
+                
+                // Create new tooltip
+                const tooltip = document.createElement('div');
+                tooltip.className = 'psychology-tooltip';
+                tooltip.textContent = message;
+                tooltip.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: linear-gradient(135deg, var(--qeyas-green), var(--qeyas-blue));
+                    color: white;
+                    padding: 1.5rem;
+                    border-radius: 12px;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                    max-width: 400px;
+                    text-align: center;
+                    font-weight: 500;
+                    z-index: 1000;
+                    opacity: 0;
+                    animation: tooltipFadeIn 0.3s ease-out forwards;
+                `;
+                
+                document.body.appendChild(tooltip);
+                
+                // Auto remove after 3 seconds
+                setTimeout(() => {
+                    if (tooltip.parentNode) {
+                        tooltip.style.animation = 'tooltipFadeOut 0.3s ease-out forwards';
+                        setTimeout(() => tooltip.remove(), 300);
+                    }
+                }, 3000);
+                
+                // Remove on click anywhere
+                setTimeout(() => {
+                    document.addEventListener('click', function removeTooltip() {
+                        if (tooltip.parentNode) {
+                            tooltip.remove();
+                        }
+                        document.removeEventListener('click', removeTooltip);
+                    });
+                }, 100);
+            }
+
+            // Brand Voice Message Cards Interactions
+            const messageCards = document.querySelectorAll('.message-card');
+            messageCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Add pulse effect
+                    this.style.animation = 'pulse 0.6s ease-in-out';
+                    
+                    // Reset animation after completion
+                    setTimeout(() => {
+                        this.style.animation = '';
+                    }, 600);
+                    
+                    // Show message type details
+                    const messageType = this.querySelector('.message-type').textContent;
+                    const examples = {
+                        'محفز': 'الرسائل المحفزة تركز على الأهداف والإنجازات المستقبلية',
+                        'داعم': 'الرسائل الداعمة تقدم الطمأنينة والمساعدة العملية',
+                        'تحليلي': 'الرسائل التحليلية تقدم البيانات والاستراتيجيات الواضحة'
+                    };
+                    
+                    if (examples[messageType]) {
+                        showTooltip(examples[messageType]);
+                    }
+                });
+            });
+
+            // Enhanced scroll animations for new sections
+            const brandVoiceObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Trigger staggered animations
+                        const characteristics = entry.target.querySelectorAll('.characteristic-item');
+                        const messages = entry.target.querySelectorAll('.message-card');
+                        
+                        characteristics.forEach((item, index) => {
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateX(0)';
+                            }, index * 150);
+                        });
+                        
+                        messages.forEach((item, index) => {
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateX(0)';
+                            }, index * 150 + 300);
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            const psychologyObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const cards = entry.target.querySelectorAll('.psychology-card');
+                        cards.forEach((card, index) => {
+                            setTimeout(() => {
+                                card.style.transform = 'translateY(0)';
+                                card.style.opacity = '1';
+                            }, index * 200);
+                        });
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            // Observe new sections
+            const brandVoiceSection = document.getElementById('brand-voice');
+            const psychologySection = document.getElementById('typography-psychology');
+            
+            if (brandVoiceSection) brandVoiceObserver.observe(brandVoiceSection);
+            if (psychologySection) psychologyObserver.observe(psychologySection);
+
+            // Color swatch interactions in psychology cards
+            const colorSwatches = document.querySelectorAll('.color-swatch-small');
+            colorSwatches.forEach(swatch => {
+                swatch.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    // Get color and show usage examples
+                    const color = this.style.background;
+                    const colorName = color.includes('145, 192, 62') ? 'الأخضر' : 'الأزرق';
+                    const usageExamples = color.includes('145, 192, 62') ? 
+                        'يُستخدم في: الأزرار الرئيسية، إشارات النجاح، الرسائل التحفيزية' :
+                        'يُستخدم في: الروابط، الأيقونات، الرسائل المعلوماتية';
+                    
+                    showTooltip(`${colorName}: ${usageExamples}`);
+                });
+                
+                swatch.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.1)';
+                    this.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.25)';
+                });
+                
+                swatch.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+                });
+            });
+
+            // Combined effect interaction
+            const combinedCard = document.querySelector('[data-card="combined"]');
+            if (combinedCard) {
+                const formulaParts = combinedCard.querySelectorAll('.formula-part, .formula-result');
+                
+                combinedCard.addEventListener('mouseenter', function() {
+                    formulaParts.forEach((part, index) => {
+                        setTimeout(() => {
+                            part.style.transform = 'scale(1.05)';
+                            part.style.boxShadow = '0 4px 15px rgba(145, 192, 62, 0.3)';
+                        }, index * 100);
+                    });
+                });
+                
+                combinedCard.addEventListener('mouseleave', function() {
+                    formulaParts.forEach(part => {
+                        part.style.transform = 'scale(1)';
+                        part.style.boxShadow = '';
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
